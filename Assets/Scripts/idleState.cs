@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class idleState : IState
 {
+    private Player player;
 
-    public void EnterState(Player player)
+    public idleState(Player player)
     {
-        Debug.Log("on idle");
+        this.player = player;
+    }
+    public void EnterState()
+    {
+       
     }
 
-    public void ExitState(Player player)
+    public void ExitState()
     {
-        Debug.Log("out idle");
+        
     }
 
-    public void UpdateState(Player player)
+    public void UpdateState()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+
+        if (Input.GetKeyDown(KeyCode.Space) && player.isGrounded)
         {
-            player.TransToState(new punchState());
+            player.TransToState(player.jumpStateInstance);
         }
+
+        float x = Input.GetAxisRaw("Horizontal");
+        if (x != 0)
+        {
+            player.TransToState(player.moveStateInstance);
+        }
+
     }
 }

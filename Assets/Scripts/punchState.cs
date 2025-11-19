@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class punchState : IState
 {
-    public void EnterState(Player player)
+    private Player player;
+    public punchState(Player player)
     {
-        Debug.Log("in punch");
+        this.player = player;
+    }
+    public void EnterState()
+    {
+        
     }
 
-    public void ExitState(Player player)
+    public void ExitState()
     {
-        Debug.Log("out punch");
+        
     }
 
-    public void UpdateState(Player player)
+    public void UpdateState()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            player.TransToState(new moveState());
-        }
+
     }
 }
